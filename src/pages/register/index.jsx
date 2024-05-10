@@ -2,7 +2,7 @@ import { Form, redirect } from 'react-router-dom';
 
 export async function registerAction() {
   const user = await Register();
-  redirect('/');
+  return redirect('/');
 }
 
 export default function Register() {
