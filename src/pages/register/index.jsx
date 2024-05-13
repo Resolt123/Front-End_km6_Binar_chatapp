@@ -1,8 +1,9 @@
-import { Form, redirect } from 'react-router-dom';
+import React from "react";
+import { Form, redirect } from "react-router-dom";
 
 export async function registerAction() {
   const user = await Register();
-  return redirect('/');
+  return redirect("/");
 }
 
 export default function Register() {
@@ -11,10 +12,10 @@ export default function Register() {
       <h1>Register</h1>
       <Form
         style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          gap: '.5rem',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          gap: ".5rem",
         }}
       >
         <label htmlFor="name">Name</label>

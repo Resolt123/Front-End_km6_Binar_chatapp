@@ -1,7 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/home";
 import Register from "./pages/register";
 import Login from "./pages/login";
+import React from "react";
+
+import "bootstrap/dist/css/bootstrap.min.css"; // apply bootstrap for styling
 
 const router = createBrowserRouter([
   {
@@ -9,9 +11,9 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: '/register',
-    element: <Register />
-  }
+    path: "/register",
+    element: <Register />,
+  },
 ]);
 
 export default function App() {
