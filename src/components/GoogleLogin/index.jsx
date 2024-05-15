@@ -15,7 +15,12 @@ const GoogleLogin = ({ text }) => {
   });
 
   return (
-    <Button className="w-100" variant="secondary" onClick={() => login()}>
+    <Button
+      type="button"
+      className="w-100"
+      variant="secondary"
+      onClick={() => login()}
+    >
       {text}
     </Button>
   );
