@@ -1,7 +1,6 @@
 import React from "react";
-import LoginComponent from "../../components/login";
+import LoginComponent from "../../components/Login";
 import { Row, Col, Card } from "react-bootstrap";
-
 
 export default function Login() {
   return (
@@ -16,5 +15,4 @@ export default function Login() {
       </Col>
     </Row>
   );
-};
-
+}
