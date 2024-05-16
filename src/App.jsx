@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css"; // apply bootstrap for styling
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 // import Protected from "./components/Protected";
 // import NonProtected from "./components/NonProtected";
@@ -30,11 +31,28 @@ const router = createBrowserRouter([
   },
 ]);
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#262626",
+      light: "#303030",
+    },
+    secondary: {
+      main: "#FFC86B",
+    },
+    text: {
+      primary: "#FFFFFF",
+    },
+  },
+});
+
 export default function App() {
   return (
     // <Provider store={store}>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
-      <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
       <ToastContainer theme="colored" />
     </GoogleOAuthProvider>
     // </Provider>
