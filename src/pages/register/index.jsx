@@ -45,10 +45,31 @@ export default function Register() {
         onSubmit={handleSubmit}
         encType="multipart/form-data"
       >
-        <TextField label="Name" name="name" required fullWidth margin="dense" />
-        <TextField label="Username" name="username" required fullWidth />
-        <TextField label="Email" name="email" type="email" required fullWidth />
         <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Name"
+          name="name"
+          required
+          fullWidth
+          margin="dense"
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Username"
+          name="username"
+          required
+          fullWidth
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Email"
+          name="email"
+          type="email"
+          required
+          fullWidth
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
           label="Password"
           name="password"
           type="password"
@@ -56,6 +77,7 @@ export default function Register() {
           fullWidth
         />
         <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
           label="Profile Image"
           name="image"
           type="file"

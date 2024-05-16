@@ -46,7 +46,7 @@ const theme = createTheme({
       main: "#FFC86B",
     },
     text: {
-      // primary: "#FFFFFF",
+      primary: "#FFFFFF",
     },
   },
 });
