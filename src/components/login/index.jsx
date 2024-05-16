@@ -68,7 +68,7 @@ export default function Login() {
       </FormGroup>
       <p className=" text-center">
         Don't have an account yet?
-        <Link as={Link} to="/register">
+        <Link to="/register">
           Register
         </Link>
       </p>

@@ -1,5 +1,5 @@
 import React from "react";
-import LoginComponent from "../../components/Login";
+import LoginComponent from "../../components/login";
 import { Row, Col, Card } from "react-bootstrap";
 
 export default function Login() {
