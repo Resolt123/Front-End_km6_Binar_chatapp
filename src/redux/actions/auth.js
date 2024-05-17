@@ -49,7 +49,7 @@ export const loginWithGoogle = (navigate, accessToken) => async (dispatch) => {
 
   let config = {
     method: "post",
-    url: `${import.meta.env.VITE_BACKEND_API}/api/authUser/google-login`,
+    url: `${import.meta.env.VITE_BACKEND_API}/api/auth/google-login`,
     headers: {
       "Content-Type": "application/json",
     },
