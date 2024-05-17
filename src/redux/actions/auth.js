@@ -50,7 +50,7 @@ export const loginWithGoogle = (navigate, accessToken) => async (dispatch) => {
 
   let config = {
     method: "post",
-    url: `${import.meta.env.VITE_BACKEND_API}/api/auth/google-login`,
+    url: `${import.meta.env.VITE_BACKEND_API}/api/authUser/google-login`,
     headers: {
       "Content-Type": "application/json",
     },
@@ -77,11 +77,9 @@ export const loginWithGoogle = (navigate, accessToken) => async (dispatch) => {
 };
 
 export const register =
-  (formData, setIsLoading, navigate) =>
-  async (dispatch) => {
+  (formData, setIsLoading, navigate) => async (dispatch) => {
     // make loading
     setIsLoading(true);
-
 
     let config = {
       method: "post",

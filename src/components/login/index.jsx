@@ -30,7 +30,7 @@ export default function Login() {
     <Box
       component="form"
       onSubmit={onSubmit}
-      sx={{ width: "100%", maxWidth: 400, mx: "auto" }}
+      sx={{ width: "100%", maxWidth: 300, mx: "auto" }}
     >
       <TextField
         fullWidth
@@ -92,7 +92,7 @@ export default function Login() {
           },
         }}
       />
-      <Box sx={{ textAlign: "center", mt: 2 }}>
+      <Box sx={{ textAlign: "center", mt: 2, mb: 3 }}>
         <Button
           variant="contained"
           color="secondary"
@@ -104,9 +104,7 @@ export default function Login() {
           {isLoading ? <CircularProgress size={24} /> : "Login"}
         </Button>
       </Box>
-      <Typography align="center" my={1}>
-        Or
-      </Typography>
+
       <Box sx={{ textAlign: "center", mb: 2 }}>
         <GoogleLogin text="Login with Google" />
       </Box>

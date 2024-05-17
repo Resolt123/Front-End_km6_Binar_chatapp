@@ -22,10 +22,10 @@ export default function Login() {
         height="100%"
         width="100%"
       >
-        <Box mb={3}>
-          <img width={"430px"} src={headerLogo} />
+        <Box mb={1} display="flex" justifyContent="center">
+          <img width={"70%"} src={headerLogo} />
         </Box>
-        <Grid item xs={12} md={3}>
+        <Grid item>
           <Card sx={{ bgcolor: theme.palette.primary.main }}>
             <CardContent>
               <Typography

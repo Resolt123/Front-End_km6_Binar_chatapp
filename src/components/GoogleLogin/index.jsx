@@ -20,9 +20,15 @@ const GoogleLogin = ({ text }) => {
       type="button"
       size="large"
       variant="contained"
-      color="secondary"
       fullWidth
       onClick={() => login()}
+      sx={{
+        bgcolor: "white", // Background color
+        color: "black",
+        "&:hover": {
+          bgcolor: "lightgray", // Background color on hover
+        },
+      }}
     >
       {text}
     </Button>
