@@ -1,6 +1,6 @@
 import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
-import { Button } from "react-bootstrap";
+import { Button } from "@mui/material";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,10 @@ const GoogleLogin = ({ text }) => {
   return (
     <Button
       type="button"
-      className="w-100"
-      variant="secondary"
+      size="large"
+      variant="contained"
+      color="secondary"
+      fullWidth
       onClick={() => login()}
     >
       {text}

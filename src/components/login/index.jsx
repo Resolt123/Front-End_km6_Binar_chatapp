@@ -1,12 +1,17 @@
-import { Button, Form, FormGroup } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { Typography } from "@mui/material";
-
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate, Link as RouterLink } from "react-router-dom";
 import { login } from "../../redux/actions/auth";
 import GoogleLogin from "../GoogleLogin";
+
+import {
+  Button,
+  TextField,
+  Typography,
+  Box,
+  CircularProgress,
+  Link,
+} from "@mui/material";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -18,58 +23,107 @@ export default function Login() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
-    // login action (fetch api)
     dispatch(login(navigate, email, password, setIsLoading));
   };
 
   return (
-    <Form onSubmit={onSubmit}>
-      <Form.Group className="mb-2" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control
-          type="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <Form.Text className="text-muted">
-          We will never share your email with anyone else.
-        </Form.Text>
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </Form.Group>
-      <FormGroup className="text-center">
+    <Box
+      component="form"
+      onSubmit={onSubmit}
+      sx={{ width: "100%", maxWidth: 400, mx: "auto" }}
+    >
+      <TextField
+        fullWidth
+        margin="normal"
+        id="email"
+        label="Email Address"
+        type="email"
+        variant="outlined"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        sx={{
+          "& .MuiInputBase-input": {
+            color: "white", // Change the text color to white
+          },
+          "& .MuiInputLabel-root": {
+            color: "white", // Change the label color to white
+          },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "white", // Change the border color to white
+            },
+          },
+          "&:hover fieldset": {
+            borderColor: "white", // Change the border color to white on hover
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "white", // Change the border color to white when focused
+          },
+        }}
+      />
+      <TextField
+        fullWidth
+        margin="normal"
+        id="password"
+        label="Password"
+        type="password"
+        variant="outlined"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        sx={{
+          "& .MuiInputBase-input": {
+            color: "white", // Change the text color to white
+          },
+          "& .MuiInputLabel-root": {
+            color: "white", // Change the label color to white
+          },
+          "& .MuiOutlinedInput-root": {
+            "& fieldset": {
+              borderColor: "white", // Change the border color to white
+            },
+          },
+          "&:hover fieldset": {
+            borderColor: "white", // Change the border color to white on hover
+          },
+          "&.Mui-focused fieldset": {
+            borderColor: "white", // Change the border color to white when focused
+          },
+        }}
+      />
+      <Box sx={{ textAlign: "center", mt: 2 }}>
         <Button
-          variant="primary"
+          variant="contained"
+          color="secondary"
           type="submit"
-          className="w-100"
+          size="large"
+          fullWidth
           disabled={isLoading}
         >
-          {isLoading ? "Authentication..." : "Login"}
+          {isLoading ? <CircularProgress size={24} /> : "Login"}
         </Button>
-      </FormGroup>
+      </Box>
       <Typography align="center" my={1}>
         Or
       </Typography>
-      <FormGroup className="text-center">
+      <Box sx={{ textAlign: "center", mb: 2 }}>
         <GoogleLogin text="Login with Google" />
-      </FormGroup>
-      <p className=" text-center">
-        Don't have an account yet?
-        <Link as={Link} to="/register">
+      </Box>
+      <Typography align="center">
+        Don't have an account yet?{" "}
+        <Link
+          component={RouterLink}
+          to="/register"
+          sx={{
+            color: "white",
+            fontWeight: "bold",
+            "&:hover": { color: "gray" },
+          }}
+        >
           Register
         </Link>
-      </p>
-    </Form>
+      </Typography>
+    </Box>
   );
 }
