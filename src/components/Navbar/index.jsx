@@ -19,6 +19,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { logoutReducer } from "../../redux/reducers/authSlice";
+import headerLogo from "@/assets/headerLogo.png";
 
 const drawerWidth = 240;
 
@@ -156,9 +157,9 @@ export default function Navbar() {
         >
           <Box
             component="img"
-            src="/logo.svg"
+            src={headerLogo}
             sx={{
-              width: "50px",
+              width: "120px",
               height: "50px",
             }}
           />

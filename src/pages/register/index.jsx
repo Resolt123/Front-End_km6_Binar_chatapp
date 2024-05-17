@@ -209,7 +209,7 @@ export default function Register() {
                     {isLoading ? <CircularProgress size={24} /> : "Register"}
                   </Button>
                 </Box>
-                
+
                 <Box sx={{ textAlign: "center", width: "100%" }}>
                   <GoogleLogin text="Register with Google" />
                 </Box>
