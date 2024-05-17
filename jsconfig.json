@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
     "checkJs": true,
-    "jsx": "react"
+    "jsx": "react",
+    "moduleResolution": "Bundler",
+    "module": "ESNext"
   }
 }
