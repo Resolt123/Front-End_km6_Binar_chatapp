@@ -118,7 +118,6 @@ export default function Register() {
                   }}
                 />
                 <TextField
-                  sx={{ "& .MuiInputBase-root": { color: "black" } }}
                   label="Email"
                   name="email"
                   type="email"
@@ -145,7 +144,6 @@ export default function Register() {
                   }}
                 />
                 <TextField
-                  sx={{ "& .MuiInputBase-root": { color: "black" } }}
                   label="Password"
                   name="password"
                   type="password"
