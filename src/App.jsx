@@ -11,24 +11,39 @@ import "react-toastify/dist/ReactToastify.css";
 // import Protected from "./components/Protected";
 // import NonProtected from "./components/NonProtected";
 
+import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
+import RootLayout from "./pages/RootLayout";
 import store from "./redux/store";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <ProtectedRoute>
+        <RootLayout />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
   },
   {
     path: "/login",
     element: <Login />,
   },
   {
-    path: "/profile",
-    element: <Profile />,
+    path: "/logout",
   },
   {
     path: "/register",
@@ -47,6 +62,13 @@ const theme = createTheme({
     },
     text: {
       primary: "#FFFFFF",
+    },
+  },
+  components: {
+    MuiLink: {
+      defaultProps: {
+        underline: "none",
+      },
     },
   },
 });
