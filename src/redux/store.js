@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import reducers from "./reducers";
+import authReducer from "./reducers/authSlice";
 
-// this will make a global state/temporary database in frontend
-export default configureStore({
-  devTools: false, // to enable/disable devtools in chrome/firefox/etc
-  reducer: reducers, // state database
+const store = configureStore({
+  reducer: {
+    auth: authReducer,
+  },
 });
+
+export default store;
