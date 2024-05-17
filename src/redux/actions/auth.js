@@ -107,59 +107,62 @@ export const register =
     setIsLoading(false);
   };
 
-// export const getProfile =
-//   (navigate, successRedirect, errorRedirect) => async (dispatch, getState) => {
-//     const { token } = getState().auth;
+export const getProfile =
+  (navigate, successRedirect, errorRedirect) => async (dispatch, getState) => {
+    const { token } = getState().auth;
 
-//     if (!token) {
-//       // because token is not valid, we will delete it from local storage
-//       dispatch(logout());
+    if (!token) {
+      // because token is not valid, we will delete it from local storage
+      dispatch(logout());
 
-//       //  if there are any error redirection we will redirect it
-//       if (navigate) {
-//         if (errorRedirect) {
-//           navigate(errorRedirect);
-//         }
-//       }
-//       return;
-//     }
+      //  if there are any error redirection we will redirect it
+      if (navigate) {
+        if (errorRedirect) {
+          navigate(errorRedirect);
+        }
+      }
+      return;
+    }
 
-//     let config = {
-//       method: "get",
-//       url: `${import.meta.env.VITE_BACKEND_API}/api/auth/profile`,
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     };
+    let config = {
+      method: "get",
+      url: `${import.meta.env.VITE_BACKEND_API}/api/auth/profile`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-//     try {
-//       const response = await axios.request(config);
-//       const { data } = response.data;
+    try {
+      const response = await axios.request(config);
+      const { data } = response.data;
 
-//       // set user by response
-//       dispatch(setUser(data));
+      // set user by response
+      dispatch(loginReducer({ user:data }));
 
-//       // if there are any success redirection we will redirect it
-//       if (navigate) {
-//         if (successRedirect) {
-//           navigate(successRedirect);
-//         }
-//       }
-//     } catch (error) {
-//       toast.error(error?.response?.data?.message);
+      // if there are any success redirection we will redirect it
+      if (navigate) {
+        if (successRedirect) {
+          navigate(successRedirect);
+        }
+      }
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
 
-//       // because token is not valid, we will delete it from local storage
-//       dispatch(logout());
+      // because token is not valid, we will delete it from local storage
+      dispatch(logout());
 
-//       //  if there are any error redirection we will redirect it
-//       if (navigate) {
-//         if (errorRedirect) {
-//           navigate(errorRedirect);
-//         }
-//       }
-//     }
-//   };
+      //  if there are any error redirection we will redirect it
+      if (navigate) {
+        if (errorRedirect) {
+          navigate(errorRedirect);
+        }
+      }
+    }
+  };
 
 export const logout = () => (dispatch) => {
   dispatch(logoutReducer());
 };
+
+
+
