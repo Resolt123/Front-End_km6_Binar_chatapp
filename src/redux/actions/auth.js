@@ -34,7 +34,6 @@ export const login =
       // redirect to home
       navigate("/"); // it will be not consistent, so alternative we use window until we used the state management
     } catch (error) {
-      // toast.error('error jir');
       toast.error(error?.response?.data?.error?.message);
 
       dispatch(logout());
