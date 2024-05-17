@@ -4,8 +4,8 @@ import { Typography } from "@mui/material";
 
 import React from "react";
 import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { login } from "../../redux/actions/auth";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/actions/auth";
 import GoogleLogin from "../GoogleLogin";
 
 export default function Login() {
@@ -13,26 +13,24 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // login action (fetch api)
-    // dispatch(login(navigate, email, password, setIsLoading));
+    dispatch(login(navigate, email, password, setIsLoading));
   };
 
   return (
-    // <Form onSubmit={onSubmit}>
-    <Form>
+    <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-2" controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
         <Form.Control
           type="email"
           placeholder="Enter email"
-          // value={email}
-          // onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <Form.Text className="text-muted">
@@ -44,8 +42,7 @@ export default function Login() {
         <Form.Control
           type="password"
           placeholder="Password"
-          // value={password}
-          // onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
       </Form.Group>

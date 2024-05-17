@@ -1,33 +1,93 @@
-import React from "react";
-import { Form, redirect } from "react-router-dom";
-
-export async function registerAction() {
-  const user = await Register();
-  return redirect("/");
-}
+import { Button, Paper, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { register } from "../../redux/actions/auth";
 
 export default function Register() {
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    dispatch(register(formData, setIsLoading, navigate));
+  };
+
   return (
-    <div>
-      <h1>Register</h1>
-      <Form
+    <Paper
+      elevation={2}
+      sx={{
+        maxWidth: "400px",
+        margin: "2rem auto",
+        padding: "2rem",
+      }}
+    >
+      <Typography
+        sx={{
+          textAlign: "center",
+          color: "black",
+          mb: "2rem",
+        }}
+        variant="h4"
+      >
+        Register Form
+      </Typography>
+      <form
         style={{
           display: "flex",
           flexDirection: "column",
-          alignItems: "flex-start",
-          gap: ".5rem",
+          alignItems: "center",
+          gap: "1.5rem",
         }}
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
       >
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" required />
-        <label htmlFor="image">Profile Image</label>
-        <input type="file" name="image" id="image" required />
-        <label htmlFor="email">Email</label>
-        <input type="text" name="email" id="email" required />
-        <label htmlFor="password">Password</label>
-        <input type="text" name="password" id="password" required />
-        <button type="submit">Submit</button>
-      </Form>
-    </div>
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Name"
+          name="name"
+          required
+          fullWidth
+          margin="dense"
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Username"
+          name="username"
+          required
+          fullWidth
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Email"
+          name="email"
+          type="email"
+          required
+          fullWidth
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Password"
+          name="password"
+          type="password"
+          required
+          fullWidth
+        />
+        <TextField
+          sx={{ "& .MuiInputBase-root": { color: "black" } }}
+          label="Profile Image"
+          name="image"
+          type="file"
+          required
+          InputLabelProps={{ shrink: true }}
+        />
+        <Button variant="contained" type="submit">
+          {isLoading ? "Loading..." : "Register"}
+        </Button>
+      </form>
+    </Paper>
   );
 }
