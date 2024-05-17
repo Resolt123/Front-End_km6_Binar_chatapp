@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { createNewMessage } from "../../redux/actions/message";
 
@@ -14,6 +14,7 @@ function AddMessage({ socket }) {
   const dispatch = useDispatch();
 
   const [addMessage, setAddMessage] = useState("");
+  const user = useSelector((state) => state.auth.user);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ function AddMessage({ socket }) {
       return;
     }
 
-    dispatch(createNewMessage(addMessage));
+    dispatch(createNewMessage(addMessage, user.id));
 
     setAddMessage("");
   };
