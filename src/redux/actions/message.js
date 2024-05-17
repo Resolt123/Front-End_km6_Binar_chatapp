@@ -19,9 +19,9 @@ export const getAllMessages = () => async (dispatch) => {
   }
 };
 
-export const createNewMessage = (message) => async (dispatch, getState) => {
+export const createNewMessage = (message, userId) => async (dispatch, getState) => {
   try {
-    const body = JSON.stringify({ message });
+    const body = JSON.stringify({ message, userId });
 
     const config = {
       method: "post",

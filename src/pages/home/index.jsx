@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { io } from "socket.io-client"; // This socket.io package
-import { useDispatch, useSelector } from "react-redux";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import { useDispatch, useSelector } from "react-redux";
+import { io } from "socket.io-client"; // This socket.io package
 
-import { getAllMessages } from "../../redux/actions/message";
-import MessageItem from "../../components/Message/MessageItem";
+import { Box } from "@mui/material";
 import AddMessage from "../../components/Message/AddMessage";
+import MessageItem from "../../components/Message/MessageItem";
+import { getAllMessages } from "../../redux/actions/message";
 
 // Initialization connect to backend websocket (socket.io)
 const socket = io(import.meta.env.VITE_WEBSOCKET_API);
@@ -56,12 +57,20 @@ function Home() {
       </Row>
 
       <Row className="mt-4">
-        <Col>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            gap: "1rem",
+          }}
+          classname="gap-2"
+        >
           {messages?.length > 0 &&
             messages?.map((message) => (
               <MessageItem data={message} key={message.id} />
             ))}
-        </Col>
+        </Box>
 
         <AddMessage socket={socket} />
       </Row>
