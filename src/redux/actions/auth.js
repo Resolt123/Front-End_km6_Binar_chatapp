@@ -76,11 +76,9 @@ export const loginWithGoogle = (navigate, accessToken) => async (dispatch) => {
 };
 
 export const register =
-  (formData, setIsLoading, navigate) =>
-  async (dispatch) => {
+  (formData, setIsLoading, navigate) => async (dispatch) => {
     // make loading
     setIsLoading(true);
-
 
     let config = {
       method: "post",
