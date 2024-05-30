@@ -7,16 +7,23 @@ import {
   Button,
 } from "@mui/material";
 import BackButton from "@/assets/back-button.png";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getProfile } from "../../redux/actions/auth";
 
 export default function Profile() {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [profileUrl, setProfileUrl] = useState("");
+  const dispatch = useDispatch();
+
+  const { user } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    // get profile
+    dispatch(getProfile(null, null, null));
+  }, [dispatch]);
 
   const handleBack = () => {
     navigate(-1);
@@ -48,7 +55,7 @@ export default function Profile() {
         minWidth="350px"
       >
         <Avatar
-          src={profileUrl}
+          src={user?.image}
           sx={{
             width: "200px",
             height: "200px",
@@ -61,7 +68,7 @@ export default function Profile() {
           color={theme.palette.text.primary}
           marginBottom={"10px"}
         >
-          {username}
+          {user?.username}
         </Typography>
         <Divider
           sx={{ backgroundColor: "grey", width: "100%", marginBottom: "10px" }}
@@ -79,7 +86,7 @@ export default function Profile() {
             color={theme.palette.text.primary}
             flex={2}
           >
-            {email}
+            {user?.email}
           </Typography>
         </Box>
       </Box>

@@ -1,7 +1,7 @@
-import React from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { Button } from "@mui/material";
 import PropTypes from "prop-types";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { loginWithGoogle } from "../../redux/actions/auth";
@@ -12,7 +12,7 @@ const GoogleLogin = ({ text }) => {
 
   const login = useGoogleLogin({
     onSuccess: (codeResponse) =>
-      dispatch(loginWithGoogle(navigate, codeResponse?.access_token)),
+      dispatch(loginWithGoogle(navigate, codeResponse.access_token)),
   });
 
   return (

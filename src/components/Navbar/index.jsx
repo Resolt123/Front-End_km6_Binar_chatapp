@@ -235,10 +235,7 @@ export default function Navbar() {
       </AppBar>
 
       {/* Content */}
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {/* Content from Route Root Children */}
-        <Outlet />
-      </Box>
+      
     </Box>
   );
 }
