@@ -1,19 +1,19 @@
-import React from "react";
+import headerLogo from "@/assets/headerLogo.png";
 import {
-  useTheme,
   Box,
   Card,
   CardContent,
-  Typography,
   Grid,
+  Typography,
+  useTheme,
 } from "@mui/material";
-import LoginComponent from "../../components/Login";
-import headerLogo from "@/assets/headerLogo.png";
+import React from "react";
+import LoginComponent from "../../components/login";
 
 export default function Login() {
   const theme = useTheme();
   return (
-    <Box width="100vw" height="100vh" bgcolor={theme.palette.primary.light}>
+    <Box width="100vw" height="100vh" bgcolor="#303030">
       <Box
         display="flex"
         flexDirection="column"
@@ -26,7 +26,7 @@ export default function Login() {
           <img width={"70%"} src={headerLogo} />
         </Box>
         <Grid item>
-          <Card sx={{ bgcolor: theme.palette.primary.main }}>
+          <Card sx={{ bgcolor: "#262626" }}>
             <CardContent>
               <Typography
                 component="h1"

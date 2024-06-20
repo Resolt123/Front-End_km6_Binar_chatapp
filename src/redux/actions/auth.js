@@ -1,6 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { loginReducer, logoutReducer } from "../reducers/authSlice";
+import {
+  editProfileReducer,
+  loginReducer,
+  logoutReducer,
+} from "../reducers/authSlice";
 
 export const login =
   (navigate, email, password, setIsLoading) => async (dispatch) => {
@@ -135,7 +139,7 @@ export const getProfile =
       const { data } = response.data;
 
       // set user by response
-      dispatch(loginReducer({ user:data }));
+      dispatch(loginReducer({ user: data }));
 
       // if there are any success redirection we will redirect it
       if (navigate) {
@@ -158,9 +162,32 @@ export const getProfile =
     }
   };
 
+export const editProfile =
+  (formData, setIsLoading, navigate) => async (dispatch, getState) => {
+    setIsLoading(true);
+    const { token } = getState().auth;
+
+    let config = {
+      method: "patch",
+      url: `${import.meta.env.VITE_BACKEND_API}/api/auth/edit-profile`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: formData,
+    };
+
+    try {
+      const response = await axios.request(config);
+      const { data } = response.data;
+      dispatch(editProfileReducer({ user: data }));
+      navigate("/profile");
+    } catch (error) {
+      toast.error(error?.response?.data?.message);
+      setIsLoading(false);
+      navigate("/profile");
+    }
+  };
+
 export const logout = () => (dispatch) => {
   dispatch(logoutReducer());
 };
-
-
-

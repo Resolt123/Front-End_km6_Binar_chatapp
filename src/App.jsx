@@ -15,6 +15,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
+import EditProfile from "./pages/profile/EditProfile";
 import Register from "./pages/register";
 import RootLayout from "./pages/RootLayout";
 import store from "./redux/store";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <Profile />,
+      },
+      {
+        path: "/edit-profile",
+        element: <EditProfile />,
       },
     ],
   },

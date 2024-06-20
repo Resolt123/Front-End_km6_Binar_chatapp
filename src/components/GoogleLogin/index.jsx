@@ -23,7 +23,7 @@ const GoogleLogin = ({ text }) => {
       fullWidth
       onClick={() => login()}
       sx={{
-        bgcolor: "white", // Background color
+        bgcolor: "white",
         color: "black",
         "&:hover": {
           bgcolor: "lightgray", // Background color on hover

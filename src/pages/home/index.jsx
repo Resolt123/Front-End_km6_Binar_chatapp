@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,14 +10,18 @@ import MessageItem from "../../components/Message/MessageItem";
 import { getAllMessages } from "../../redux/actions/message";
 
 // Initialization connect to backend websocket (socket.io)
-const socket = io(import.meta.env.VITE_WEBSOCKET_API);
 
 function Home() {
+  const socket = io(import.meta.env.VITE_WEBSOCKET_API);
   const dispatch = useDispatch();
 
+  const { user } = useSelector((state) => state.auth);
   const { messages } = useSelector((state) => state.message);
 
   const [typing, setTyping] = useState(false);
+  const [typingMessage, setTypingMessage] = useState("");
+  // Declare a variable for the timeout outside of the useEffect
+  const typingTimeoutRef = useRef();
 
   // This useEffect will get all messages from backend
   useEffect(() => {
@@ -26,6 +30,7 @@ function Home() {
   }, [dispatch]);
 
   // This useEffect is to connect to backend websocket (socket.io)
+
   useEffect(() => {
     // Connect to backend
     socket.on("connect", () => {});
@@ -36,11 +41,16 @@ function Home() {
       dispatch(getAllMessages());
     });
 
-    socket.on("ontyping", () => {
-      setTyping(true);
-      setTimeout(() => {
-        setTyping(false);
-      }, 1000);
+    socket.on("ontyping", (typingUser) => {
+      // Clear the previous timeout
+      clearTimeout(typingTimeoutRef.current);
+
+      if (typingUser.userId !== user.id) {
+        setTypingMessage(`${typingUser.userName} sedang mengetik...`);
+        typingTimeoutRef.current = setTimeout(() => {
+          setTypingMessage(null);
+        }, 1000);
+      }
     });
 
     socket.on("getAllMessages", () => {
@@ -50,13 +60,7 @@ function Home() {
 
   return (
     <>
-      <Row className="mt-4">
-        <Col>
-          <h6>{typing && "seseorang sedang mengetik...."}</h6>
-        </Col>
-      </Row>
-
-      <Row className="mt-4">
+      <Row className="my-4">
         <Box
           sx={{
             display: "flex",
@@ -70,6 +74,9 @@ function Home() {
             messages?.map((message) => (
               <MessageItem data={message} key={message.id} />
             ))}
+          <Col>
+            <h6>{typingMessage}</h6>
+          </Col>
         </Box>
 
         <AddMessage socket={socket} />

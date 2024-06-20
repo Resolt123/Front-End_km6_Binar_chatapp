@@ -1,12 +1,12 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
-import Form from "react-bootstrap/Form";
+import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
+import FloatingLabel from "react-bootstrap/FloatingLabel";
+import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import { createNewMessage } from "../../redux/actions/message";
 
@@ -31,7 +31,7 @@ function AddMessage({ socket }) {
 
   return (
     <Form onSubmit={onSubmit}>
-      <Row className="g-2 mt-4">
+      <Row className="g-4 mt-4">
         <Col md>
           <FloatingLabel controlId="floatingInputGrid" label="Add Message">
             <Form.Control
@@ -40,7 +40,7 @@ function AddMessage({ socket }) {
               value={addMessage}
               onChange={(e) => {
                 setAddMessage(e.target.value);
-                socket.emit("typing");
+                socket.emit("typing", { userId: user.id, userName: user.name });
               }}
             />
           </FloatingLabel>
