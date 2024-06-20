@@ -30,7 +30,7 @@ export default function Register() {
   };
 
   return (
-    <Box width="100vw" height="115vh" bgcolor={theme.palette.primary.light}>
+    <Box width="100vw" height="100vh" bgcolor={theme.palette.primary.light}>
       <Box
         display="flex"
         flexDirection="column"
@@ -81,11 +81,25 @@ export default function Register() {
                         borderColor: "secondary.main",
                         borderWidth: "2px",
                       },
+                      "&.Mui-focused": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                          borderWidth: "3px",
+                        },
+                      },
+                      "&:hover:not(.Mui-focused)": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                        },
+                      },
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
                       color: "secondary.main",
                       fontWeight: "bold",
+                      "&.Mui-focused": {
+                        color: "secondary.main",
+                      },
                     },
                   }}
                 />
@@ -103,11 +117,25 @@ export default function Register() {
                         borderColor: "secondary.main",
                         borderWidth: "2px",
                       },
+                      "&.Mui-focused": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                          borderWidth: "3px",
+                        },
+                      },
+                      "&:hover:not(.Mui-focused)": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                        },
+                      },
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
                       color: "secondary.main",
                       fontWeight: "bold",
+                      "&.Mui-focused": {
+                        color: "secondary.main",
+                      },
                     },
                   }}
                 />
@@ -126,11 +154,25 @@ export default function Register() {
                         borderColor: "secondary.main",
                         borderWidth: "2px",
                       },
+                      "&.Mui-focused": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                          borderWidth: "3px",
+                        },
+                      },
+                      "&:hover:not(.Mui-focused)": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                        },
+                      },
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
                       color: "secondary.main",
                       fontWeight: "bold",
+                      "&.Mui-focused": {
+                        color: "secondary.main",
+                      },
                     },
                   }}
                 />
