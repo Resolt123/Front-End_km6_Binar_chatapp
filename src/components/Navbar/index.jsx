@@ -1,5 +1,6 @@
 import SearchIcon from "@mui/icons-material/Search";
 
+import headerLogo from "@/assets/headerLogo.png";
 import {
   Avatar,
   InputBase,
@@ -17,9 +18,8 @@ import Typography from "@mui/material/Typography";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import { logoutReducer } from "../../redux/reducers/authSlice";
-import headerLogo from "@/assets/headerLogo.png";
 
 const drawerWidth = 240;
 
@@ -155,14 +155,16 @@ export default function Navbar() {
             gridTemplateColumns: "1fr auto",
           }}
         >
-          <Box
-            component="img"
-            src={headerLogo}
-            sx={{
-              width: "120px",
-              height: "50px",
-            }}
-          />
+          <RouterLink component={RouterLink} to="/">
+            <Box
+              component="img"
+              src={headerLogo}
+              sx={{
+                width: "120px",
+                height: "50px",
+              }}
+            />
+          </RouterLink>
           <Box
             sx={{
               display: "flex",
@@ -204,7 +206,7 @@ export default function Navbar() {
               >
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography
-                    component={Link}
+                    component={RouterLink}
                     to="/profile"
                     color="black"
                     textAlign="center"
@@ -235,7 +237,6 @@ export default function Navbar() {
       </AppBar>
 
       {/* Content */}
-      
     </Box>
   );
 }

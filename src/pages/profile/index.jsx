@@ -1,48 +1,41 @@
+import BackButton from "@/assets/back-button.png";
+import { Edit } from "@mui/icons-material";
 import {
   Avatar,
   Box,
-  useTheme,
+  Button,
   Divider,
   Typography,
-  Button,
+  useTheme,
 } from "@mui/material";
-import BackButton from "@/assets/back-button.png";
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getProfile } from "../../redux/actions/auth";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const theme = useTheme();
   const navigate = useNavigate();
 
-  const dispatch = useDispatch();
-
   const { user } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    // get profile
-    dispatch(getProfile(null, null, null));
-  }, [dispatch]);
-
-  const handleBack = () => {
-    navigate(-1);
-  };
 
   return (
     <Box
-      display={"flex"}
-      justifyContent={"center"}
-      alignItems={"center"}
-      width={"100vw"}
-      height={"100vh"}
-      bgcolor={theme.palette.primary.light}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+      }}
     >
-      <Button
-        sx={{ position: "absolute", top: "20px", left: "20px" }}
-        onClick={handleBack}
-      >
-        <img width={"50px"} src={BackButton} />
+      <Button onClick={() => navigate("/")}>
+        <Box
+          sx={{
+            width: "25px",
+            mr: "16px",
+            my: "16px",
+          }}
+          component="img"
+          src={BackButton}
+        />
+        <span>Back to Home</span>
       </Button>
       <Box
         display="flex"
@@ -54,6 +47,18 @@ export default function Profile() {
         borderRadius="10px"
         minWidth="350px"
       >
+        <Button
+          LinkComponent={Link}
+          to="/edit-profile"
+          variant="contained"
+          endIcon={<Edit />}
+          color="secondary"
+          sx={{
+            my: "1rem",
+          }}
+        >
+          Edit Profile
+        </Button>
         <Avatar
           src={user?.image}
           sx={{
@@ -63,16 +68,28 @@ export default function Profile() {
             border: `5px solid ${theme.palette.primary.light}`,
           }}
         />
-        <Typography
-          variant="h6"
-          color={theme.palette.text.primary}
-          marginBottom={"10px"}
-        >
-          {user?.username}
-        </Typography>
         <Divider
           sx={{ backgroundColor: "grey", width: "100%", marginBottom: "10px" }}
         />
+        <Box display={"flex"} flexDirection={"row"} width={"100%"}>
+          <Typography
+            fontSize={"17px"}
+            color={theme.palette.text.primary}
+            flex={1}
+            sx={{
+              justifySelf: "flex-end",
+            }}
+          >
+            Name
+          </Typography>
+          <Typography
+            fontSize={"17px"}
+            color={theme.palette.text.primary}
+            flex={2}
+          >
+            {user?.name}
+          </Typography>
+        </Box>
         <Box display={"flex"} flexDirection={"row"} width={"100%"}>
           <Typography
             fontSize={"17px"}

@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import PropTypes from "prop-types";
 import Card from "react-bootstrap/Card";
 
@@ -9,9 +9,20 @@ function MessageItem({ data }) {
         sx={{
           display: "flex",
           justifyContent: "space-between",
+          alignItems: "center",
         }}
       >
-        <h6>{data?.user.name || "No Name"}</h6>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
+            mb: "1rem",
+          }}
+        >
+          <Avatar alt={data?.user.name || "No Name"} src={data?.user.image} />
+          <h6>{data?.user.name || "No Name"}</h6>
+        </Box>
         <p>
           {new Date(data?.createdAt).toLocaleDateString("id-ID")}{" "}
           {new Date(data?.createdAt).toLocaleTimeString("id-ID")}

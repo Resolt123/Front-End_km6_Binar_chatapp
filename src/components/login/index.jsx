@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate, Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions/auth";
 import GoogleLogin from "../GoogleLogin";
 
 import {
-  Button,
-  TextField,
-  Typography,
   Box,
+  Button,
   CircularProgress,
   Link,
+  TextField,
+  Typography,
 } from "@mui/material";
 
 export default function Login() {
@@ -38,27 +38,23 @@ export default function Login() {
         id="email"
         label="Email Address"
         type="email"
-        variant="outlined"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         required
         sx={{
-          "& .MuiInputBase-input": {
-            color: "white", // Change the text color to white
-          },
-          "& .MuiInputLabel-root": {
-            color: "white", // Change the label color to white
-          },
+          // Root class for the input field
           "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "white", // Change the border color to white
+            color: "white",
+            // Class for the border around the input field
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "secondary.main",
+              borderWidth: "2px",
             },
           },
-          "&:hover fieldset": {
-            borderColor: "white", // Change the border color to white on hover
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "white", // Change the border color to white when focused
+          // Class for the label of the input field
+          "& .MuiInputLabel-outlined": {
+            color: "secondary.main",
+            fontWeight: "bold",
           },
         }}
       />
@@ -68,27 +64,23 @@ export default function Login() {
         id="password"
         label="Password"
         type="password"
-        variant="outlined"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
         sx={{
-          "& .MuiInputBase-input": {
-            color: "white", // Change the text color to white
-          },
-          "& .MuiInputLabel-root": {
-            color: "white", // Change the label color to white
-          },
+          // Root class for the input field
           "& .MuiOutlinedInput-root": {
-            "& fieldset": {
-              borderColor: "white", // Change the border color to white
+            color: "white",
+            // Class for the border around the input field
+            "& .MuiOutlinedInput-notchedOutline": {
+              borderColor: "secondary.main",
+              borderWidth: "2px",
             },
           },
-          "&:hover fieldset": {
-            borderColor: "white", // Change the border color to white on hover
-          },
-          "&.Mui-focused fieldset": {
-            borderColor: "white", // Change the border color to white when focused
+          // Class for the label of the input field
+          "& .MuiInputLabel-outlined": {
+            color: "secondary.main",
+            fontWeight: "bold",
           },
         }}
       />

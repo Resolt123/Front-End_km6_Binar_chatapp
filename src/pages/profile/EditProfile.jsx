@@ -1,4 +1,4 @@
-import headerLogo from "@/assets/headerLogo.png";
+import BackButton from "@/assets/back-button.png";
 import {
   Box,
   Button,
@@ -6,18 +6,20 @@ import {
   CardContent,
   CircularProgress,
   Grid,
-  Link,
   TextField,
   Typography,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
-import GoogleLogin from "../../components/GoogleLogin";
-import { register } from "../../redux/actions/auth";
 
-export default function Register() {
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { editProfile } from "../../redux/actions/auth";
+
+export default function EditProfile() {
+  const { user } = useSelector((state) => state.auth);
+  const [name, setName] = useState(user.name);
+  const [email, setEmail] = useState(user.email);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
@@ -26,11 +28,32 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    dispatch(register(formData, setIsLoading, navigate));
+    formData.get("image");
+    formData.append("id", user.id);
+    dispatch(editProfile(formData, setIsLoading, navigate));
   };
 
   return (
-    <Box width="100vw" height="115vh" bgcolor={theme.palette.primary.light}>
+    <Box bgcolor={theme.palette.primary.main}>
+      <Button
+        onClick={() => navigate(-1)}
+        sx={{
+          color: "white",
+          display: "block",
+          mx: "auto",
+        }}
+      >
+        <Box
+          sx={{
+            width: "25px",
+            mr: "16px",
+            my: "16px",
+          }}
+          component="img"
+          src={BackButton}
+        />
+        <span>Back to Profile</span>
+      </Button>
       <Box
         display="flex"
         flexDirection="column"
@@ -39,9 +62,6 @@ export default function Register() {
         height="100%"
         width="100%"
       >
-        <Box mb={1} display="flex" justifyContent="center">
-          <img width={"70%"} src={headerLogo} />
-        </Box>
         <Grid item>
           <Card sx={{ bgcolor: theme.palette.primary.main }}>
             <CardContent>
@@ -52,7 +72,7 @@ export default function Register() {
                 textAlign="center"
                 color={theme.palette.primary.contrastText}
               >
-                Register
+                Edit Profile
               </Typography>
 
               <form
@@ -72,6 +92,8 @@ export default function Register() {
                   required
                   fullWidth
                   margin="dense"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   sx={{
                     // Root class for the input field
                     "& .MuiOutlinedInput-root": {
@@ -81,33 +103,25 @@ export default function Register() {
                         borderColor: "secondary.main",
                         borderWidth: "2px",
                       },
-                    },
-                    // Class for the label of the input field
-                    "& .MuiInputLabel-outlined": {
-                      color: "secondary.main",
-                      fontWeight: "bold",
-                    },
-                  }}
-                />
-                <TextField
-                  label="Username"
-                  name="username"
-                  required
-                  fullWidth
-                  sx={{
-                    // Root class for the input field
-                    "& .MuiOutlinedInput-root": {
-                      color: "white",
-                      // Class for the border around the input field
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "secondary.main",
-                        borderWidth: "2px",
+                      "&.Mui-focused": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                          borderWidth: "3px",
+                        },
+                      },
+                      "&:hover:not(.Mui-focused)": {
+                        "& .MuiOutlinedInput-notchedOutline": {
+                          borderColor: "secondary.main",
+                        },
                       },
                     },
                     // Class for the label of the input field
                     "& .MuiInputLabel-outlined": {
                       color: "secondary.main",
                       fontWeight: "bold",
+                      "&.Mui-focused": {
+                        color: "secondary.main",
+                      },
                     },
                   }}
                 />
@@ -117,29 +131,8 @@ export default function Register() {
                   type="email"
                   required
                   fullWidth
-                  sx={{
-                    // Root class for the input field
-                    "& .MuiOutlinedInput-root": {
-                      color: "white",
-                      // Class for the border around the input field
-                      "& .MuiOutlinedInput-notchedOutline": {
-                        borderColor: "secondary.main",
-                        borderWidth: "2px",
-                      },
-                    },
-                    // Class for the label of the input field
-                    "& .MuiInputLabel-outlined": {
-                      color: "secondary.main",
-                      fontWeight: "bold",
-                    },
-                  }}
-                />
-                <TextField
-                  label="Password"
-                  name="password"
-                  type="password"
-                  required
-                  fullWidth
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   sx={{
                     // Root class for the input field
                     "& .MuiOutlinedInput-root": {
@@ -175,7 +168,6 @@ export default function Register() {
                   label="Profile Image"
                   name="image"
                   type="file"
-                  required
                   InputLabelProps={{ shrink: true }}
                   sx={{
                     // Root class for the input field
@@ -217,27 +209,9 @@ export default function Register() {
                     fullWidth
                     disabled={isLoading}
                   >
-                    {isLoading ? <CircularProgress size={24} /> : "Register"}
+                    {isLoading ? <CircularProgress size={24} /> : "Save"}
                   </Button>
                 </Box>
-
-                <Box sx={{ textAlign: "center", width: "100%" }}>
-                  <GoogleLogin text="Register with Google" />
-                </Box>
-                <Typography align="center">
-                  Already have account?{" "}
-                  <Link
-                    component={RouterLink}
-                    to="/login"
-                    sx={{
-                      color: "white",
-                      fontWeight: "bold",
-                      "&:hover": { color: "gray" },
-                    }}
-                  >
-                    Login
-                  </Link>
-                </Typography>
               </form>
             </CardContent>
           </Card>
