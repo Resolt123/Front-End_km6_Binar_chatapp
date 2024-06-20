@@ -34,7 +34,6 @@ export default function Login() {
     >
       <TextField
         fullWidth
-        margin="normal"
         id="email"
         label="Email Address"
         type="email"
@@ -42,6 +41,7 @@ export default function Login() {
         onChange={(e) => setEmail(e.target.value)}
         required
         sx={{
+          m: "1rem 0 1.5rem 0",
           // Root class for the input field
           "& .MuiOutlinedInput-root": {
             color: "white",
@@ -50,17 +50,30 @@ export default function Login() {
               borderColor: "secondary.main",
               borderWidth: "2px",
             },
+            "&.Mui-focused": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "secondary.main",
+                borderWidth: "3px",
+              },
+            },
+            "&:hover:not(.Mui-focused)": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "secondary.main",
+              },
+            },
           },
           // Class for the label of the input field
           "& .MuiInputLabel-outlined": {
             color: "secondary.main",
             fontWeight: "bold",
+            "&.Mui-focused": {
+              color: "secondary.main",
+            },
           },
         }}
       />
       <TextField
         fullWidth
-        margin="normal"
         id="password"
         label="Password"
         type="password"
@@ -68,6 +81,7 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
         required
         sx={{
+          mb: "1rem",
           // Root class for the input field
           "& .MuiOutlinedInput-root": {
             color: "white",
@@ -76,11 +90,25 @@ export default function Login() {
               borderColor: "secondary.main",
               borderWidth: "2px",
             },
+            "&.Mui-focused": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "secondary.main",
+                borderWidth: "3px",
+              },
+            },
+            "&:hover:not(.Mui-focused)": {
+              "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "secondary.main",
+              },
+            },
           },
           // Class for the label of the input field
           "& .MuiInputLabel-outlined": {
             color: "secondary.main",
             fontWeight: "bold",
+            "&.Mui-focused": {
+              color: "secondary.main",
+            },
           },
         }}
       />
