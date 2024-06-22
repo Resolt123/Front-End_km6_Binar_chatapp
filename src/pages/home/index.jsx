@@ -49,7 +49,7 @@ function Home() {
         setTypingMessage(`${typingUser.userName} sedang mengetik...`);
         typingTimeoutRef.current = setTimeout(() => {
           setTypingMessage(null);
-        }, 1000);
+        }, 3500);
       }
     });
 
